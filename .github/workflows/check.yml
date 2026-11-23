@@ -1,0 +1,35 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # frontmatter 写坏了 pi 只会警告并跳过，这里直接卡死
+      - run: python tools/check-skill.py
+
+      # 脚本必须能在没有 WorkBuddy 数据的环境下优雅退出（不能崩栈）
+      - name: smoke - inspect without data root
+        run: |
+          set +e
+          python skills/backup-workbuddy/scripts/inspect_workbuddy.py --root /nonexistent --json > /tmp/out.json
+          rc=$?
+          set -e
+          test $rc -eq 2 || { echo "expected exit 2 for missing root, got $rc"; exit 1; }
+
+      - name: smoke - snapshot refuses missing root
+        run: |
+          set +e
+          WORKBUDDY_CONFIG_DIR=/nonexistent python skills/backup-workbuddy/scripts/workbuddy_snapshot.py --dry-run > /tmp/snap.log 2>&1
+          rc=$?
+          set -e
+          test $rc -eq 2 || { echo "expected exit 2, got $rc"; cat /tmp/snap.log; exit 1; }

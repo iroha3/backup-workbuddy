@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "backup-workbuddy",
+  "description": "Agent skill for backing up and migrating WorkBuddy desktop data.",
+  "owner": {
+    "name": "iroha3"
+  },
+  "plugins": [
+    {
+      "name": "backup-workbuddy",
+      "description": "Back up, migrate and restore WorkBuddy desktop conversation data across app versions.",
+      "author": {
+        "name": "iroha3"
+      },
+      "source": "./",
+      "category": "productivity",
+      "homepage": "https://github.com/iroha3/backup-workbuddy"
+    }
+  ]
+}

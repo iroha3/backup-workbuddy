@@ -1,0 +1,29 @@
+{
+  "name": "@iroha3/backup-workbuddy",
+  "version": "1.0.0",
+  "description": "Back up, migrate and restore WorkBuddy desktop conversation data (SQLite metadata + per-session jsonl). Ships as a pi skill.",
+  "keywords": [
+    "pi-package",
+    "workbuddy",
+    "backup",
+    "migration",
+    "sqlite",
+    "jsonl"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iroha3/backup-workbuddy.git"
+  },
+  "pi": {
+    "skills": [
+      "./skills"
+    ]
+  },
+  "files": [
+    "skills",
+    ".claude-plugin",
+    "README.md",
+    "LICENSE"
+  ]
+}
