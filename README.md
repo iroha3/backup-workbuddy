@@ -38,6 +38,9 @@ python skills/backup-workbuddy/scripts/inspect_workbuddy.py
 python skills/backup-workbuddy/scripts/workbuddy_snapshot.py
 python skills/backup-workbuddy/scripts/workbuddy_snapshot.py --list      # 只看会打包什么
 python skills/backup-workbuddy/scripts/workbuddy_snapshot.py --keep 10   # 保留份数
+
+# 只读导出成 Markdown（有损、不可还原，db 坏了时兜底用）
+python skills/backup-workbuddy/scripts/export_conversations.py --root ~/.workbuddy --out ./export-md
 ```
 
 留底产物：`~/WorkBuddy-Backups/workbuddy-state-<时间戳>.zip`，实测 27 MB 原始数据 → 5.9 MB、0.8 秒，
@@ -52,6 +55,7 @@ python skills/backup-workbuddy/scripts/workbuddy_snapshot.py --keep 10   # 保�
 | `SKILL.md` | 主指令：现场勘查 → 备份 → 迁移 → 症状对照 → 纪律 |
 | `scripts/inspect_workbuddy.py` | 只读体检，按路径规则重算每条会话的落点并核对文件 |
 | `scripts/workbuddy_snapshot.py` | 可还原快照（db 用在线备份接口，热备份安全） |
+| `scripts/export_conversations.py` | 只读导出 Markdown：每会话一个 md + `export-manifest.tsv`，有损不可还原 |
 | `references/migration-playbook.md` | 数据布局、两版差异表、目录名算法、SQL 级迁移配方、真实案例数字 |
 | `references/app-internals.md` | 规则说不清时，怎么从 `app.asar` 里把路径逻辑挖出来 |
 

@@ -1,6 +1,6 @@
 {
   "name": "@iroha3/backup-workbuddy",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Back up, migrate and restore WorkBuddy desktop conversation data (SQLite metadata + per-session jsonl). Ships as a pi skill.",
   "keywords": [
     "pi-package",

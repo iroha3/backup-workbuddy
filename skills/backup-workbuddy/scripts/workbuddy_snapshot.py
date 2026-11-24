@@ -6,8 +6,8 @@ WorkBuddy（国内版）状态留底脚本  v1.0
 作用：把「能原样还原」的东西打成一个 zip —— 包括元数据库、会话正文 jsonl、记忆、
       登录密钥、本地存储、各工作区记忆。排除可重装的 plugins/binaries/缓存/日志。
 
-和 export_conversations.py 的区别：
-  export_conversations.py  -> 只读导出 Markdown（有损、不能还原）
+和 scripts/export_conversations.py 的区别：
+  export_conversations.py  -> 只读导出 Markdown（有损、不能还原），适合留个文本底 / db 坏了兜底
   本脚本                    -> 可还原快照（db + 原始 jsonl + 记忆 + 密钥）
 
 用法：

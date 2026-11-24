@@ -118,5 +118,14 @@ projects\ 18 个目录 / 141 文件 / 约 20 MB
 
 ## 7. 兜底
 
-`export_conversations.py`（随旧备份提供）能把 `projects\` 里所有 jsonl 导出成 Markdown，
+`scripts/export_conversations.py` 能把 `projects\` 里所有 jsonl 导出成 Markdown，
 **只读不可还原**；db 彻底坏掉时用它的产物保底。
+
+```bash
+python scripts/export_conversations.py --root "D:/旧备份"          # 默认输出 ./export-md
+python scripts/export_conversations.py --root "D:/旧备份" --out D:/md --db D:/旧备份/workbuddy.db
+```
+
+每个会话一个 `.md`（标题来自 `sessions.custom_title/title`，取不到用首条用户消息），
+外加 `export-manifest.tsv` 记文件名 / 消息数 / 标题。回滚快照（`.file-rollback`）、
+编辑器沙盒、shell 快照目录下的 jsonl 会被跳过。退出码 2 = 源目录不存在，1 = 有文件读失败。

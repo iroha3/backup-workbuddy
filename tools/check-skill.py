@@ -28,6 +28,7 @@ NAME_RE = re.compile(r"[a-z0-9]+(-[a-z0-9]+)*")
 REQUIRED = (
     "scripts/inspect_workbuddy.py",
     "scripts/workbuddy_snapshot.py",
+    "scripts/export_conversations.py",
     "references/migration-playbook.md",
     "references/app-internals.md",
 )

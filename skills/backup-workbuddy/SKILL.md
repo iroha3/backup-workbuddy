@@ -99,8 +99,12 @@ if (Buffer.byteLength(name) > 255) name = name.slice(0,180 字节) + "-" + djb2B
 ## 4. 兜底（db 坏了但 jsonl 还在）
 
 ```bash
-python <backup>/export_conversations.py "<root>/projects"    # 导出 Markdown，仅可读不可还原
+python scripts/export_conversations.py --root "<root>"        # -> ./export-md/*.md + export-manifest.tsv
+python scripts/export_conversations.py "<root>/projects" --out D:/md
 ```
+
+只读导出 Markdown，**有损、不可还原**，别拿它当备份。db 能读就顺带取标题，读不动照常导出；
+坏行会被跳过并在 stderr 计数（退出码 1），源目录不存在退出码 2。
 
 ## 5. 硬性纪律
 

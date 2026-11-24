@@ -33,3 +33,11 @@ jobs:
           rc=$?
           set -e
           test $rc -eq 2 || { echo "expected exit 2, got $rc"; cat /tmp/snap.log; exit 1; }
+
+      - name: smoke - export without data root
+        run: |
+          set +e
+          python skills/backup-workbuddy/scripts/export_conversations.py --root /nonexistent > /tmp/exp.log 2>&1
+          rc=$?
+          set -e
+          test $rc -eq 2 || { echo "expected exit 2, got $rc"; cat /tmp/exp.log; exit 1; }
